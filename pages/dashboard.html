@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .form-check-label {
+      font-size: 0.9rem;
+      color: #dc3545;
+    }
+    
+    .row.area-statistical h2 {
+    text-align: center;
+    }
+    
+    .area-statistical .box-content {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+    
+    .dashboard-content {
+        margin: 20px;
+    }
+    .area-statistical {
+        margin-bottom: 20px;
+    }
+</style>
+<div id="header-placeholder"></div>
+
+<div class="dashboard-content">
+    <div class="row area-statistical">
+        <div class="col-xl-3 col-6">
+            <div class="box-content box-number-users">
+                <p><i class="fa-solid fa-users"></i> Thành viên:</p>
+                <h2 class="counter" data-target="250">0</h2>
+            </div>
+        </div>
+        <div class="col-xl-3 col-6">
+            <div class="box-content box-number-cv">
+                <p><i class="fa-solid fa-file"></i> Số lượng CV:</p>
+                <h2 class="counter" data-target="150">0</h2>
+            </div>
+        </div>
+        <div class="col-xl-3 col-6">
+            <div class="box-content box-number-users-today">
+                <p><i class="fa-solid fa-users"></i> Đăng ký hôm nay:</p>
+                <h2 class="counter" data-target="15">0</h2>
+            </div>
+        </div>
+        <div class="col-xl-3 col-6">
+            <div class="box-content box-number-cv-today">
+                <p><i class="fa-solid fa-file"></i> Số lượng CV hôm nay:</p>
+                <h2 class="counter" data-target="10">0</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="userChart"></canvas>
+        </div>
+        <div class="col-md-6">
+            <canvas id="dailyChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="/public/include.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+<script src="/public/customer.js"></script>
+<script src="/public/chart.js"></script>
+<script src="/public/auth-guard.js"></script>
+
+</body>
+</html>

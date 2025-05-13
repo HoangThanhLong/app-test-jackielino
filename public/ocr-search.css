@@ -1,0 +1,631 @@
+/* Biến màu sắc chủ đạo */
+:root {
+    --primary-color: #4285f4;
+    --primary-hover: #1a73e8;
+    --table-header: #2c3e50;
+    --table-row-even: #f8f9fa;
+    --table-row-odd: #ffffff;
+    --table-border: #e0e0e0;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+}
+
+/* Định dạng chung cho body */
+body {
+    background-color: #f1f3f5;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+/* Styling chung cho container */
+.container {
+    width: 100%;
+    max-width: none; /* Loại bỏ giới hạn max-width để bảng chiếm hết chiều rộng */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Container đăng nhập/đăng ký */
+.auth-container {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+/* Tab navigation cho đăng nhập/đăng ký */
+.nav-pills {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-pills .nav-link {
+    padding: 15px;
+    font-weight: 500;
+    color: #495057;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Nội dung tab */
+.tab-content {
+    padding: 30px;
+}
+
+/* Form input container */
+.form-outline {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Form tìm kiếm */
+form {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+/* Input form */
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: black;
+    transition: all 0.3s ease;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(66, 133, 244, 0.25);
+    outline: none;
+}
+
+.form-control:focus::placeholder {
+    opacity: 0;
+}
+
+/* Label cho form */
+.form-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #adb5bd;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 5px;
+}
+
+.form-control:not(:placeholder-shown) + .form-label,
+.form-control:focus + .form-label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.form-control:not(:placeholder-shown),
+.form-control:focus {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+/* Nút đăng nhập/đăng ký */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Nút link dạng icon (btn-floating) */
+.btn-link.btn-floating {
+    font-size: 1.2rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.btn-link.btn-floating:hover {
+    color: #dc3545;
+}
+
+/* Liên kết (ví dụ: Quên mật khẩu) */
+a {
+    color: rgb(253, 13, 13);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Label checkbox */
+.form-check-label {
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+/* Tiêu đề trang với hiệu ứng */
+.custom-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--table-header);
+    margin-bottom: 30px;
+    text-align: center;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.custom-heading:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+/* Nút tìm kiếm */
+.custom-btn {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Định dạng khu vực thống kê */
+.row.area-statistical h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.area-statistical .box-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+/* Nội dung dashboard */
+.dashboard-content {
+    margin: 20px;
+}
+
+.area-statistical {
+    margin-bottom: 20px;
+}
+
+/* Container chứa bảng */
+#callLogTableContainer {
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    scrollbar-width: thin; /* Thanh cuộn mỏng cho Firefox */
+}
+
+/* Styling cho thanh cuộn ngang */
+#callLogTableContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+#callLogTableContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#callLogTableContainer::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+#callLogTableContainer::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+/* Styling cho bảng */
+#callLogTable {
+    width: 100%;
+    min-width: 1600px; /* Tăng min-width để bảng lớn hơn và chiếm không gian tối đa */
+    overflow: hidden;
+}
+
+/* Header bảng */
+#callLogTable thead {
+    background-color: var(--table-header);
+}
+
+#callLogTable th {
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 15px 8px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    border: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Body bảng */
+#callLogTable tbody tr {
+    transition: all 0.3s;
+}
+
+#callLogTable tbody tr:nth-child(odd) {
+    background-color: var(--table-row-odd);
+}
+
+#callLogTable tbody tr:nth-child(even) {
+    background-color: var(--table-row-even);
+}
+
+#callLogTable tbody tr:hover {
+    background-color: rgba(66, 133, 244, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#callLogTable td {
+    padding: 14px 8px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--table-border);
+    text-align: center;
+    vertical-align: middle;
+    
+}
+
+/* Đặt chiều rộng tối thiểu cho các cột */
+#callLogTable th:nth-child(1), /* File CV */
+#callLogTable td:nth-child(1) {
+    min-width: 120px;
+}
+
+#callLogTable th:nth-child(2), /* STT */
+#callLogTable td:nth-child(2) {
+    min-width: 80px;
+}
+
+#callLogTable th:nth-child(3), /* Họ tên */
+#callLogTable td:nth-child(3) {
+    min-width: 180px;
+}
+
+#callLogTable th:nth-child(4), /* Ngày sinh */
+#callLogTable td:nth-child(4) {
+    min-width: 120px;
+}
+
+#callLogTable th:nth-child(5), /* Email */
+#callLogTable td:nth-child(5) {
+    min-width: 250px;
+}
+
+#callLogTable th:nth-child(6), /* SĐT */
+#callLogTable td:nth-child(6) {
+    min-width: 140px;
+}
+
+#callLogTable th:nth-child(7), /* Kinh nghiệm */
+#callLogTable td:nth-child(7) {
+    min-width: 180px;
+}
+
+#callLogTable th:nth-child(8), /* Học vấn */
+#callLogTable td:nth-child(8) {
+    min-width: 140px;
+}
+
+#callLogTable th:nth-child(9), /* Kỹ năng */
+#callLogTable td:nth-child(9) {
+    min-width: 180px;
+}
+
+#callLogTable th:nth-child(10), /* Vị trí */
+#callLogTable td:nth-child(10) {
+    min-width: 140px;
+}
+
+#callLogTable th:nth-child(11), /* Trạng thái */
+#callLogTable td:nth-child(11) {
+    min-width: 120px;
+}
+
+#callLogTable th:nth-child(12), /* Chi tiết */
+#callLogTable td:nth-child(12) {
+    min-width: 120px;
+}
+
+#callLogTable th:nth-child(13), /* Lịch */
+#callLogTable td:nth-child(13) {
+    min-width: 120px;
+}
+
+/* Styling cho nút trong bảng */
+#callLogTable .btn {
+    padding: 8px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: 100px;
+    white-space: nowrap;
+}
+
+#callLogTable .btn-info {
+    background-color: var(--info-color);
+    border-color: var(--info-color);
+    color: white;
+}
+
+#callLogTable .btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+#callLogTable .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng cột kinh nghiệm, học vấn, kỹ năng */
+.experience-cell {
+    min-width: 180px;
+    max-width: 200px;
+    overflow: visible; /* Cho phép nội dung mở rộng */
+}
+
+/* Wrapper cho nội dung */
+.content-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cắt ngắn nội dung dài */
+.truncate-text {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Nội dung đầy đủ */
+.full-content {
+    margin-top: 5px;
+    padding: 5px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    white-space: normal; /* Cho phép xuống dòng */
+    word-wrap: break-word; /* Ngắt từ nếu cần */
+    text-align: left;
+    width: 100%;
+}
+
+/* Nút "Xem thêm" */
+.show-more-btn {
+    margin-top: 5px;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+}
+
+/* Status badges */
+.status-badge {
+    padding: 8px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.status-completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: black;
+}
+
+.status-active {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.2);
+}
+
+/* Phân trang */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    border-radius: 50% !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: var(--primary-color);
+    border: 1px solid #dee2e6;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+.page-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+/* Định dạng section thống kê */
+section.text-center {
+    margin-bottom: 2rem;
+}
+
+.counter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .custom-heading {
+        font-size: 2rem;
+    }
+
+    #callLogTable th,
+    #callLogTable td {
+        padding: 10px 5px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    form .row {
+        flex-direction: column;
+    }
+
+    form .col-md-2, form .col-md-3, form .col-md-5 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .custom-heading {
+        font-size: 1.8rem;
+    }
+
+    #callLogTable .btn {
+        width: auto;
+        padding: 11px;
+        font-size: 12px;
+    }
+
+    .page-link {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* Responsive cho bảng */
+    #callLogTable {
+        min-width: 1000px; /* Giảm min-width để phù hợp với màn hình nhỏ */
+    }
+
+    .experience-cell {
+        max-width: 150px;
+    }
+
+    /* Responsive cho form tìm kiếm */
+    .row.align-items-center {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .col-md-3, .col-md-5, .col-md-2 {
+        width: 100% !important;
+        margin-bottom: 0.5rem;
+    }
+
+    #searchButton {
+        width: 100%;
+    }
+
+    .counter {
+        font-size: 1.5rem;
+    }
+
+    /* Responsive cho auth-container */
+    .auth-container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .tab-content {
+        padding: 20px;
+    }
+
+    .nav-pills .nav-link {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-danger {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        height: 45px;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .form-control:not(:placeholder-shown) + .form-label,
+    .form-control:focus + .form-label {
+        font-size: 0.75rem;
+    }
+}

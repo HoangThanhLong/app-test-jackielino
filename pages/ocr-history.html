@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCR History</title>
+  <!-- MDB CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/ocr-search.css">
+  <style>
+    #historyTableContainer {
+      max-width: 1200px;
+      margin: 0 114px;
+      padding: 0 0;
+    }
+
+    #historyTable {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    #historyTable thead th {
+      background-color: #2c3e50;
+      color: #fff;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      padding: 12px 15px;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    #historyTable tbody td {
+      padding: 10px 15px;
+      font-size: 0.95rem;
+      color: #333;
+      border-bottom: 1px solid #e0e0e0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #historyTable tbody tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    #historyTable tbody tr:hover {
+      background-color: #e6ecef;
+      transition: background-color 0.2s ease;
+    }
+
+    #historyTable td:nth-child(1),
+    #historyTable td:nth-child(7),
+    #historyTable td:nth-child(8) {
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      #historyTable thead th,
+      #historyTable tbody td {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+      }
+      #historyTable tbody td {
+        max-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>   
+  <!-- Nội dung chính của trang OCR History -->
+  <main class="py-4">
+    <!-- Tiêu đề trang -->
+    <h2 class="text-center mb-4 custom-heading">Lịch sử đặt lịch</h2>
+    
+    <!-- Container chứa bảng kết quả -->
+    <div id="historyTableContainer">
+      <table class="table" id="historyTable">
+        <!-- Tiêu đề bảng -->
+        <thead>
+          <tr>
+            <th><i class="fas fa-hashtag me-1"></i> STT</th>
+            <th><i class="fas fa-user me-1"></i> Họ tên</th>
+            <th><i class="far fa-calendar-alt me-1"></i> Ngày sinh</th>
+            <th><i class="far fa-envelope me-1"></i> Email</th>
+            <th><i class="fas fa-phone me-1"></i> SĐT</th>
+            <th><i class="far fa-calendar-check me-1"></i> Ngày đặt</th>
+            <th><i class="far fa-clock me-1"></i> Giờ bắt đầu</th>
+            <th><i class="far fa-clock me-1"></i> Giờ kết thúc</th>
+            <th><i class="fas fa-user-check me-1"></i> Người đặt</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Phân trang -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination"></ul>
+    </nav>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script src="/public/include.js"></script>
+  <!-- MDB JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+  <script src="/public/auth-guard.js"></script>
+  <script>
+    // Khi DOM được tải hoàn tất
+    document.addEventListener('DOMContentLoaded', function () {
+      // Khởi tạo biến toàn cục
+      let currentPage = 1; // Trang hiện tại
+      const itemsPerPage = 5; // Số mục mỗi trang
+      let allData = []; // Dữ liệu
+
+      // Hàm định dạng ngày từ YYYY-MM-DD sang DD/MM/YYYY
+      const formatDate = (dateStr) => {
+        if (!dateStr || dateStr.trim() === '') return '';
+        const [year, month, day] = dateStr.split('-');
+        return `${day}/${month}/${year}`;
+      };
+
+      // Hàm hiển thị dữ liệu lên bảng
+      const displayData = (data, page) => {
+        const tbody = document.querySelector('#historyTable tbody');
+        if (!tbody) {
+          console.error('Table body not found! Check if #historyTable exists in the HTML.');
+          return;
+        }
+        tbody.innerHTML = '';
+
+        // Nếu không có dữ liệu, hiển thị thông báo
+        if (!data || data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="9">Không có dữ liệu ứng viên đã hoàn thành</td></tr>';
+          updatePagination(0);
+          return;
+        }
+
+        // Tính toán dữ liệu phân trang
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const paginatedData = data.slice(start, end);
+
+        // Tạo hàng cho từng mục dữ liệu
+        paginatedData.forEach((item, index) => {
+          const row = document.createElement('tr');
+          const birthDate = formatDate(item.date_of_birth);
+          const interviewDate = formatDate(item.interview_date);
+
+          row.innerHTML = `
+            <td>${start + index + 1}</td>
+            <td>${item.full_name || ''}</td>
+            <td>${birthDate || ''}</td>
+            <td>${item.email || ''}</td>
+            <td>${item.phone_number || ''}</td>
+            <td>${interviewDate || ''}</td>
+            <td>${item.interview_start_time || ''}</td>
+            <td>${item.interview_end_time || ''}</td>
+            <td>${item.booker_name || ''}</td>
+          `;
+          tbody.appendChild(row);
+        });
+
+        // Cập nhật phân trang
+        updatePagination(data.length);
+      };
+
+      // Hàm cập nhật phân trang
+      const updatePagination = (totalItems) => {
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const pagination = document.querySelector('.pagination');
+        if (!pagination) {
+          console.error('Pagination element not found! Check if .pagination exists in the HTML.');
+          return;
+        }
+        pagination.innerHTML = '';
+
+        pagination.innerHTML += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}"><a class="page-link" href="#" id="prevPage"><<</a></li>`;
+
+        for (let i = 1; i <= totalPages; i++) {
+          pagination.innerHTML += `<li class="page-item ${currentPage === i ? 'active' : ''}"><a class="page-link" href="#" data-page="${i}">${i}</a></li>`;
+        }
+
+        pagination.innerHTML += `<li class="page-item ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}"><a class="page-link" href="#" id="nextPage">>></a></li>`;
+
+        // Đảm bảo các phần tử đã được tạo trước khi gắn sự kiện
+        setTimeout(() => {
+          document.querySelectorAll('.pagination .page-link[data-page]').forEach(link => {
+            link.addEventListener('click', function (e) {
+              e.preventDefault();
+              currentPage = parseInt(this.getAttribute('data-page'));
+              displayData(allData, currentPage);
+            });
+          });
+
+          const prevPage = document.getElementById('prevPage');
+          if (prevPage) {
+            prevPage.addEventListener('click', function (e) {
+              e.preventDefault();
+              if (currentPage > 1) {
+                currentPage--;
+                displayData(allData, currentPage);
+              }
+            });
+          } else {
+            console.error('Previous button not found!');
+          }
+
+          const nextPage = document.getElementById('nextPage');
+          if (nextPage) {
+            nextPage.addEventListener('click', function (e) {
+              e.preventDefault();
+              if (currentPage < totalPages) {
+                currentPage++;
+                displayData(allData, currentPage);
+              }
+            });
+          } else {
+            console.error('Next button not found!');
+          }
+        }, 0);
+      };
+
+      // Hàm lấy tất cả dữ liệu có trạng thái "đã hoàn thành"
+      const fetchCompletedData = async () => {
+        try {
+          const payload = {
+            status: "đã hoàn thành"
+          };
+
+          const response = await fetch('https://app.jackielino-dev.io.vn/indexphp.php', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json();
+          console.log('Dữ liệu từ API:', data); // Debug dữ liệu API
+
+          if (!data || (Array.isArray(data) && data.length === 0)) {
+            allData = [];
+          } else {
+            allData = data;
+          }
+          currentPage = 1;
+          displayData(allData, currentPage);
+        } catch (error) {
+          console.error('Lỗi chi tiết:', error);
+          alert('Đã xảy ra lỗi khi lấy dữ liệu: ' + error.message);
+          allData = [];
+          displayData(allData, currentPage);
+        }
+      };
+
+      // Gọi hàm lấy dữ liệu ngay khi trang tải
+      fetchCompletedData();
+    });
+  </script>
+</body>
+</html>

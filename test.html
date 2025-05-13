@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Separate Frontend-Backend Demo</title>
+</head>
+<body>
+    <h1>Frontend (Separate Server)</h1>
+
+    <button id="getDataBtn">Get Data from Backend</button>
+    <p id="getDataResult"></p>
+
+    <form id="postForm">
+        <input type="text" id="postInput" placeholder="Type something" required>
+        <button type="submit">Send POST to Backend</button>
+    </form>
+    <p id="postDataResult"></p>
+
+    <script>
+        const backendBaseURL = 'https://api-app.jackielino-dev.io.vn/';
+
+        document.getElementById('getDataBtn').addEventListener('click', async () => {
+            const response = await fetch(`${backendBaseURL}/api/data`);
+            const data = await response.json();
+            document.getElementById('getDataResult').textContent = JSON.stringify(data);
+        });
+
+        document.getElementById('postForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const inputValue = document.getElementById('postInput').value;
+            const response = await fetch(`${backendBaseURL}/api/send`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: inputValue })
+            });
+            const result = await response.json();
+            document.getElementById('postDataResult').textContent = result.reply;
+        });
+    </script>
+</body>
+</html>

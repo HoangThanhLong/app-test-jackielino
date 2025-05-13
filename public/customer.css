@@ -1,0 +1,379 @@
+/* Định dạng chung cho body */
+body {
+    background-color: #f1f3f5;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+/* Container đăng nhập/đăng ký */
+.auth-container {
+    background: white;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+/* Tab navigation cho đăng nhập/đăng ký */
+.nav-pills {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-pills .nav-link {
+    padding: 15px;
+    font-weight: 500;
+    color: #495057;
+    border-radius: 0;
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Nội dung tab */
+.tab-content {
+    padding: 30px;
+}
+
+/* Form input container */
+.form-outline {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+/* Input form */
+.form-control {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    color: black;
+    transition: border-color 0.3s ease, padding-top 0.3s ease, padding-bottom 0.3s ease;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #000000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+.form-control:focus::placeholder {
+    opacity: 0;
+}
+
+/* Label cho form */
+.form-label {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    color: #adb5bd;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0 5px;
+}
+
+.form-control:not(:placeholder-shown) + .form-label,
+.form-control:focus + .form-label {
+    top: 0;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #000000;
+}
+
+.form-control:not(:placeholder-shown),
+.form-control:focus {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+/* Nút đăng nhập/đăng ký */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Nút link dạng icon (btn-floating) */
+.btn-link.btn-floating {
+    font-size: 1.2rem;
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+.btn-link.btn-floating:hover {
+    color: #dc3545;
+}
+
+/* Liên kết (ví dụ: Quên mật khẩu) */
+a {
+    color: rgb(253, 13, 13);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Label checkbox */
+.form-check-label {
+    font-size: 0.9rem;
+    color: #dc3545;
+}
+
+/* Định dạng khu vực thống kê */
+.row.area-statistical h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.area-statistical .box-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+/* Nội dung dashboard */
+.dashboard-content {
+    margin: 20px;
+}
+
+.area-statistical {
+    margin-bottom: 20px;
+}
+
+/* Định dạng chung cho bảng tìm kiếm ứng viên */
+#callLogTable {
+    width: 100% !important;
+    min-width: 1000px;
+    table-layout: auto;
+}
+
+#callLogTable th, #callLogTable td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Định dạng cột kinh nghiệm, học vấn, kỹ năng */
+.experience-cell {
+    max-width: 200px;
+    overflow: hidden;
+    position: relative;
+    white-space: normal;
+}
+
+/* Cắt ngắn nội dung dài */
+.truncate-text {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Tooltip cho nội dung đầy đủ */
+.text-tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 2000; /* Đảm bảo hiển thị trên cùng */
+    min-width: 200px;
+    max-width: 300px;
+    display: block; /* Đảm bảo hiển thị */
+}
+
+.tooltip-content {
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.close-tooltip {
+    margin-top: 5px;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+}
+
+/* Nút "Xem thêm" */
+.show-more-btn {
+    margin-top: 5px;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+}
+
+/* Định dạng badge trạng thái */
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+.status-completed {
+    background-color: #28a745;
+    color: white;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Container bảng cuộn ngang */
+#callLogTableContainer {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Định dạng phân trang */
+.pagination {
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.pagination .page-link {
+    padding: 6px 12px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+/* Tùy chỉnh form tìm kiếm */
+.custom-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn:hover {
+    background-color: #c82333;
+}
+
+/* Tiêu đề trang */
+.custom-heading {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Định dạng section thống kê */
+section.text-center {
+    margin-bottom: 2rem;
+}
+
+.counter {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    /* Responsive cho bảng */
+    #callLogTable {
+        width: 100% !important;
+        table-layout: auto !important;
+    }
+
+    #callLogTable th,
+    #callLogTable td {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .experience-cell {
+        max-width: 150px;
+    }
+
+    /* Responsive cho form tìm kiếm */
+    .row.align-items-center {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .col-md-3, .col-md-5, .col-md-2 {
+        width: 100% !important;
+        margin-bottom: 0.5rem;
+    }
+
+    #searchButton {
+        width: 100%;
+    }
+
+    .counter {
+        font-size: 1.5rem;
+    }
+
+    /* Responsive cho auth-container */
+    .auth-container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+
+    .tab-content {
+        padding: 20px;
+    }
+
+    .nav-pills .nav-link {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .btn-danger {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        height: 45px;
+    }
+
+    .form-label {
+        font-size: 0.85rem;
+    }
+
+    .form-control:not(:placeholder-shown) + .form-label,
+    .form-control:focus + .form-label {
+        font-size: 0.75rem;
+    }
+
+    /* Responsive cho tooltip */
+    .text-tooltip {
+        max-width: 200px;
+        font-size: 0.9rem;
+    }
+}

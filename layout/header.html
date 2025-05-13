@@ -1,0 +1,220 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Navbar Redesign</title>
+      <!-- MDB CSS -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet" />
+      <!-- Font Awesome -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+      <!--<link href="/public/customer.css" rel="stylesheet"/>-->
+      <style>
+        /* Đổi màu chủ đạo thành màu đỏ */
+        .navbar {
+         background-color: rgba(0, 0, 0, 0.05);
+        }
+    
+        .navbar-nav .nav-link {
+          color: #757575 !important;
+        }
+    
+        .navbar-nav .nav-link:hover {
+          color: #7575 !important; /* Hiệu ứng hover màu sáng */
+        }
+    
+        .navbar-toggler {
+          border-color: #fff !important; /* Đổi màu viền của nút toggle */
+        }
+    
+        .navbar-toggler-icon {
+          background-color: white !important; /* Đổi màu icon toggle */
+        }
+    
+        .dropdown-menu {
+          background-color: #f8f9fa !important;
+        }
+    
+        .dropdown-menu .dropdown-item:hover {
+          background-color: #e60000 !important; /* Hiệu ứng hover cho item dropdown */
+          color: white !important;
+        }
+    
+        /* Chỉnh sửa avatar */
+        .navbar .dropdown-toggle img {
+          border: 2px solid #fff;
+        }
+    
+        /* Thêm hiệu ứng cho các nút icon */
+        .navbar .text-reset i {
+          transition: color 0.3s ease;
+        }
+    
+        .navbar .text-reset:hover i {
+          color: #ffcccc; /* Thay đổi màu khi hover */
+        }
+    
+        /* Thiết kế nút Logout */
+        .logout-btn {
+          background-color: #ff3333; /* Màu đỏ đậm hơn */
+          color: white;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          margin-left: 15px;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+    
+        .logout-btn:hover {
+          background-color: #ff6666; /* Màu sáng hơn khi hover */
+          color: white;
+          transform: scale(1.05);
+        }
+    
+        .logout-btn i {
+          font-size: 1.1rem;
+        }
+        .navbar .fas.fa-bell { 
+            color: #757575 ; 
+            
+        }
+        .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important; /* Màu xanh Bootstrap */
+        }
+      </style>
+    </head>
+    <body>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+    
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+             <a class="navbar-brand mt-2 mt-lg-0" href="/pages/dashboard.html">
+                <img
+                  src="/layout/tma.jpg" 
+                  height="30"
+                  alt="TMA Logo"
+                  loading="lazy"
+                />
+              </a>
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="dashboard">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ocr-search">Ứng viên</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="ocr-history">Lịch sử đặt lịch</a>
+              </li>
+            </ul>
+            <!-- Left links -->
+          </div>
+          <!-- Collapsible wrapper -->
+    
+          <!-- Right elements -->
+          <div class="d-flex align-items-center">
+            <!-- Notifications -->
+            <div class="dropdown">
+              <a
+                data-mdb-dropdown-init
+                class="text-reset me-3 dropdown-toggle hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                aria-expanded="false"
+              >
+                <i class="fas fa-bell"></i>
+                <span class="badge rounded-pill badge-notification bg-danger">1</span>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a class="dropdown-item" href="#">Some news</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Another news</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
+            <!-- Avatar -->
+            <div class="dropdown">
+              <a
+                data-mdb-dropdown-init
+                class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                href="#"
+                id="navbarDropdownMenuAvatar"
+                role="button"
+                data-mdb-toggle="dropdown">
+                  
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                  class="rounded-circle"
+                  height="35"
+                  alt="Black and White Portrait of a Man"
+                  loading="lazy"
+                />
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuAvatar"
+              >
+                <li>
+                  <a class="dropdown-item" href="#">My profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </li>
+              </ul>
+            </div>
+    
+            <!-- Nút Logout -->
+            <a class="logout-btn" id="logout-btn">Đăng xuất</a>
+          </div>
+          <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+    
+      <!-- MDB JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+      <script src="/public/customer.js"></script>
+      <!-- Thêm script để khởi tạo dropdown nếu cần -->
+      <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //   // Khởi tạo tất cả các dropdown
+        //   const dropdownElements = document.querySelectorAll('[data-mdb-dropdown-init]');
+        //   dropdownElements.forEach(dropdown => {
+        //     new mdb.Dropdown(dropdown);
+        //   });
+        // });
+      </script>
+    </body>
+    </html>
